@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Block, BlocksWithSuperBlock } from '../../../interfaces/block';
-import { API_LOCATION } from '../../utils/handle-request';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Block, BlocksWithSuperBlock } from "../../../interfaces/block";
+import { API_LOCATION } from "../../utils/handle-request";
 
 const SuperBlock = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([] as Block[]);
-  const [superBlockName, setSuperBlockName] = useState('');
+  const [superBlockName, setSuperBlockName] = useState("");
   const params = useParams() as { superblock: string; block: string };
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const SuperBlock = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(`${API_LOCATION}/${params.superblock}`)
-      .then(res => res.json() as Promise<BlocksWithSuperBlock>)
+      .then((res) => res.json() as Promise<BlocksWithSuperBlock>)
       .then(
-        blockData => {
+        (blockData) => {
           setLoading(false);
           setItems(blockData.blocks);
           setSuperBlockName(blockData.currentSuperBlock);
@@ -28,7 +28,7 @@ const SuperBlock = () => {
         (error: Error) => {
           setLoading(false);
           setError(error);
-        }
+        },
       );
   };
 
@@ -42,19 +42,19 @@ const SuperBlock = () => {
     <div>
       <h1>{superBlockName}</h1>
       <ul>
-        {items.map(block => (
+        {items.map((block) => (
           <li key={block.name}>
             <Link to={`/${params.superblock}/${block.path}`}>{block.name}</Link>
           </li>
         ))}
       </ul>
       <p>
-        <Link to={'/'}>Return to Superblocks</Link>
+        <Link to={"/"}>Return to Superblocks</Link>
       </p>
       <hr />
       <h2>Create New Project</h2>
       <p>
-        Want to create a new project? Open your terminal and run{' '}
+        Want to create a new project? Open your terminal and run{" "}
         <code>pnpm run create-new-project</code>
       </p>
     </div>

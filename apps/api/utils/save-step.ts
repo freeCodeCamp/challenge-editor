@@ -1,12 +1,12 @@
-import { writeFile } from 'fs/promises';
-import { join } from 'path';
-import { CHALLENGE_DIR } from '../configs/paths';
+import { writeFile } from "fs/promises";
+import { join } from "path";
+import { CHALLENGE_DIR } from "../configs/paths";
 
 export const saveStep = async (
   sup: string,
   block: string,
   step: string,
-  content: string
+  content: string,
 ): Promise<boolean> => {
   try {
     const filePath = join(CHALLENGE_DIR, block, step);

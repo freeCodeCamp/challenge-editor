@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
-import { getSteps } from '../utils/get-steps';
+import { Request, Response } from "express";
+import { getSteps } from "../utils/get-steps";
 
 export const blockRoute = async (
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<void> => {
   const { superblock, block } = req.params;
 
