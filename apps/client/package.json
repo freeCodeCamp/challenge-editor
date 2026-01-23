@@ -11,7 +11,7 @@
     "vite": "4.5.2"
   },
   "scripts": {
-    "start": "PORT=3300 vite",
+    "dev": "PORT=3300 vite",
     "build": "tsc && vite build",
     "lint": "eslint --max-warnings 0",
     "type-check": "tsc --noEmit",

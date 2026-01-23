@@ -4,7 +4,7 @@
   "private": true,
   "description": "Editor to help with new challenge structure",
   "scripts": {
-    "start": "tsx server.ts",
+    "dev": "tsx server.ts",
     "postinstall": "shx cp ./sample.env ./.env",
     "lint": "eslint --max-warnings 0",
     "type-check": "tsc --noEmit"
