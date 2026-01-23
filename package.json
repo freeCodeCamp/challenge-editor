@@ -1,0 +1,11 @@
+{
+  "name": "@freecodecamp/challenge-editor",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "freeCodeCamp <team@freecodecamp.org>",
+  "license": "BSD-3-Clause",
+  "private": true,
+  "packageManager": "pnpm@10.28.1"
+}
