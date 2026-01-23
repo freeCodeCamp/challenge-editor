@@ -1,16 +1,16 @@
-import { readFile } from 'fs/promises';
-import { join } from 'path';
-import matter from 'gray-matter';
-import { CHALLENGE_DIR } from '../configs/paths';
+import { readFile } from "fs/promises";
+import { join } from "path";
+import matter from "gray-matter";
+import { CHALLENGE_DIR } from "../configs/paths";
 
 export const getStepContent = async (
   sup: string,
   block: string,
-  step: string
+  step: string,
 ): Promise<{ name: string; dashedName: string; fileData: string }> => {
   const filePath = join(CHALLENGE_DIR, block, step);
 
-  const fileData = await readFile(filePath, 'utf8');
+  const fileData = await readFile(filePath, "utf8");
   const name = matter(fileData).data.title as string;
   const dashedName = matter(fileData).data.dashedName as string;
   return { name, dashedName, fileData };

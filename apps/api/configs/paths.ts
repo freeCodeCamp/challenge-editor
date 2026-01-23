@@ -1,7 +1,6 @@
 import { join } from "path";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
-
 
 export const SUPERBLOCK_META_DIR = join(
   process.cwd(),

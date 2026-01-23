@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import CodeMirror from '@uiw/react-codemirror';
-import * as codemirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
-import 'codemirror/mode/markdown/markdown';
+import React, { useEffect, useState } from "react";
+import CodeMirror from "@uiw/react-codemirror";
+import * as codemirror from "codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/material.css";
+import "codemirror/mode/markdown/markdown";
 // we need to import this mode to get the fenced codeblock highlighting
-import 'codemirror/mode/css/css';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/jsx/jsx';
-import { Link, useParams } from 'react-router-dom';
-import { ChallengeContent } from '../../../interfaces/challenge-content';
-import SaveChallenge from '../buttons/save-challenge';
-import './editor.css';
-import { API_LOCATION } from '../../utils/handle-request';
+import "codemirror/mode/css/css";
+import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/jsx/jsx";
+import { Link, useParams } from "react-router-dom";
+import { ChallengeContent } from "../../../interfaces/challenge-content";
+import SaveChallenge from "../buttons/save-challenge";
+import "./editor.css";
+import { API_LOCATION } from "../../utils/handle-request";
 
 // only includes superblocks whose folder names don't match their dashed names?
 export const superBlockNameMap: { [key: string]: string } = {
-  'responsive-web-design-22': '2022/responsive-web-design',
-  'javascript-algorithms-and-data-structures-22':
-    'javascript-algorithms-and-data-structures-v8',
-  'front-end-development': 'full-stack-developer'
+  "responsive-web-design-22": "2022/responsive-web-design",
+  "javascript-algorithms-and-data-structures-22":
+    "javascript-algorithms-and-data-structures-v8",
+  "front-end-development": "full-stack-developer",
 };
 
 const Editor = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState({
-    name: '',
-    dashedName: '',
-    fileData: ''
+    name: "",
+    dashedName: "",
+    fileData: "",
   });
-  const [stepContent, setStepContent] = useState('');
-  const { superblock = '', block = '', challenge = '' } = useParams();
+  const [stepContent, setStepContent] = useState("");
+  const { superblock = "", block = "", challenge = "" } = useParams();
 
   const superblockUrl =
     superblock in superBlockNameMap
@@ -46,9 +46,9 @@ const Editor = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(`${API_LOCATION}/${superblock}/${block}/${challenge}`)
-      .then(res => res.json() as Promise<ChallengeContent>)
+      .then((res) => res.json() as Promise<ChallengeContent>)
       .then(
-        content => {
+        (content) => {
           setLoading(false);
           setItems(content);
           setStepContent(content.fileData);
@@ -56,7 +56,7 @@ const Editor = () => {
         (error: Error) => {
           setLoading(false);
           setError(error);
-        }
+        },
       );
   };
 
@@ -74,7 +74,7 @@ const Editor = () => {
   return (
     <div>
       <h1>{items.name}</h1>
-      <span className='breadcrumb'>
+      <span className="breadcrumb">
         {superblock} / {block}
       </span>
       <CodeMirror
@@ -82,12 +82,12 @@ const Editor = () => {
         onChange={handleChange}
         options={{
           mode: {
-            name: 'markdown',
-            highlightFormatting: true
+            name: "markdown",
+            highlightFormatting: true,
           },
-          theme: 'material',
+          theme: "material",
           lineNumbers: true,
-          lineWrapping: true
+          lineWrapping: true,
         }}
       />
       <SaveChallenge
@@ -101,10 +101,10 @@ const Editor = () => {
       </p>
       <p>
         <Link
-          to={`${import.meta.env.CHALLENGE_EDITOR_LEARN_CLIENT_LOCATION}/learn/${superblockUrl}/${block || ''}/${
+          to={`${import.meta.env.CHALLENGE_EDITOR_LEARN_CLIENT_LOCATION}/learn/${superblockUrl}/${block || ""}/${
             items.dashedName
           }`}
-          target='_blank'
+          target="_blank"
         >
           View Live Version of the Challenge in your running development
           environment
