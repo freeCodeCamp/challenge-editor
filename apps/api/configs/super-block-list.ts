@@ -1,118 +1,92 @@
-export const superBlockList = [
+export const superBlockStages = [
   {
-    name: "Legacy Responsive Web Design",
-    path: "responsive-web-design",
+    stageName: 'Core Curriculum',
+    superBlocks: [
+      {
+        name: 'Responsive Web Design V9',
+        path: 'responsive-web-design-v9'
+      },
+      {
+        name: 'JavaScript V9',
+        path: 'javascript-v9'
+      },
+      {
+        name: 'Front End Development Libraries V9',
+        path: 'front-end-development-libraries-v9'
+      },
+      {
+        name: 'Python V9',
+        path: 'python-v9'
+      },
+      {
+        name: 'Relational Databases V9',
+        path: 'relational-databases-v9'
+      },
+      {
+        name: 'Back End Development and APIs V9',
+        path: 'back-end-development-and-apis-v9'
+      }
+    ]
   },
   {
-    name: "Legacy JavaScript Algorithms and Data Structures",
-    path: "javascript-algorithms-and-data-structures",
+    stageName: 'English for Developers',
+    superBlocks: [
+      {
+        name: 'A2 English for Developers',
+        path: 'a2-english-for-developers'
+      },
+      {
+        name: 'B1 English for Developers',
+        path: 'b1-english-for-developers'
+      }
+    ]
   },
   {
-    name: "Front End Development Libraries",
-    path: "front-end-development-libraries",
+    stageName: 'Professional Spanish',
+    superBlocks: [
+      {
+        name: 'A1 Professional Spanish',
+        path: 'a1-professional-spanish'
+      }
+    ]
   },
   {
-    name: "Data Visualization",
-    path: "data-visualization",
+    stageName: 'Professional Chinese',
+    superBlocks: [
+      {
+        name: 'A1 Professional Chinese',
+        path: 'a1-professional-chinese'
+      }
+    ]
   },
   {
-    name: "Back End Development and APIs",
-    path: "back-end-development-and-apis",
+    stageName: 'Professional Certifications',
+    superBlocks: [
+      {
+        name: 'Foundational C# with Microsoft',
+        path: 'foundational-c-sharp-with-microsoft'
+      }
+    ]
   },
   {
-    name: "Quality Assurance",
-    path: "quality-assurance",
-  },
-  {
-    name: "Scientific Computing with Python",
-    path: "scientific-computing-with-python",
-  },
-  {
-    name: "Data Analysis with Python",
-    path: "data-analysis-with-python",
-  },
-  {
-    name: "Information Security",
-    path: "information-security",
-  },
-  {
-    name: "Coding Interview Prep",
-    path: "coding-interview-prep",
-  },
-  {
-    name: "Machine Learning with Python",
-    path: "machine-learning-with-python",
-  },
-  {
-    name: "Relational Databases",
-    path: "relational-databases",
-  },
-  {
-    name: "Responsive Web Design",
-    path: "responsive-web-design-22",
-  },
-  {
-    name: "JavaScript Algorithms and Data Structures",
-    path: "javascript-algorithms-and-data-structures-22",
-  },
-  {
-    name: "The Odin Project",
-    path: "the-odin-project",
-  },
-  {
-    name: "College Algebra with Python",
-    path: "college-algebra-with-python",
-  },
-  {
-    name: "Project Euler",
-    path: "project-euler",
-  },
-  {
-    name: "(New) Foundational C# with Microsoft",
-    path: "foundational-c-sharp-with-microsoft",
-  },
-  {
-    name: "A2 English for Developers",
-    path: "a2-english-for-developers",
-  },
-  {
-    name: "Rosetta Code",
-    path: "rosetta-code",
-  },
-  {
-    name: "Python For Everybody",
-    path: "python-for-everybody",
-  },
-  {
-    name: "B1 English for Developers (Beta)",
-    path: "b1-english-for-developers",
-  },
-  {
-    name: "Certified Full Stack Developer",
-    path: "full-stack-developer",
-  },
-  {
-    name: "A1 Professional Spanish (Beta)",
-    path: "a1-professional-spanish",
-  },
-  {
-    name: "A2 Professional Spanish (Beta)",
-    path: "a2-professional-spanish",
-  },
-  {
-    name: "A2 Professional Chinese (Beta)",
-    path: "a2-professional-chinese",
-  },
-  {
-    name: "Basic HTML",
-    path: "basic-html",
-  },
-  {
-    name: "Semantic HTML",
-    path: "semantic-html",
-  },
-  {
-    name: "A1 Professional Chinese (Beta)",
-    path: "a1-professional-chinese",
-  },
+    stageName: 'Extra Practice',
+    superBlocks: [
+      {
+        name: 'The Odin Project',
+        path: 'the-odin-project'
+      },
+      {
+        name: 'Coding Interview Prep',
+        path: 'coding-interview-prep'
+      },
+      {
+        name: 'Project Euler',
+        path: 'project-euler'
+      },
+      {
+        name: 'Rosetta Code',
+        path: 'rosetta-code'
+      }
+    ]
+  }
 ];
