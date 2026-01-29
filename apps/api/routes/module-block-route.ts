@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { getBlocks } from "../utils/get-full-stack-blocks";
+import { Request, Response } from 'express';
+import { getBlocks } from '../utils/get-full-stack-blocks';
 
 export const moduleBlockRoute = async (
   req: Request,
-  res: Response,
+  res: Response
 ): Promise<void> => {
   const { superblock, chapter, module } = req.params;
 

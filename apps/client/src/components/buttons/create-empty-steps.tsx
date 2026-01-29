@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { BlockRequiredProps } from "../../../interfaces/prop-types";
-import { API_LOCATION, handleRequest } from "../../utils/handle-request";
+import React, { useState } from 'react';
+import { BlockRequiredProps } from '../../../interfaces/prop-types';
+import { API_LOCATION, handleRequest } from '../../utils/handle-request';
 
 const CreateEmptySteps = ({ superblock, block }: BlockRequiredProps) => {
   const [num, setNum] = useState(0);
 
   const click = handleRequest(() =>
     fetch(
-      `${API_LOCATION}/${superblock || ""}/${
-        block || ""
+      `${API_LOCATION}/${superblock || ''}/${
+        block || ''
       }/_tools/create-empty-steps`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ num }),
-      },
-    ),
+        body: JSON.stringify({ num })
+      }
+    )
   );
 
   const changeNum = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +26,9 @@ const CreateEmptySteps = ({ superblock, block }: BlockRequiredProps) => {
 
   return (
     <div>
-      <label htmlFor="num">
+      <label htmlFor='num'>
         Number of steps to create:
-        <input id="num" type="number" onChange={changeNum} />
+        <input id='num' type='number' onChange={changeNum} />
       </label>
       <button onClick={click}>Create Empty Steps</button>
     </div>

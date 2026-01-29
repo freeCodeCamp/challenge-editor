@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { SuperBlock } from "../../../interfaces/super-block";
-import { API_LOCATION } from "../../utils/handle-request";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SuperBlock } from '../../../interfaces/super-block';
+import { API_LOCATION } from '../../utils/handle-request';
 
 const Landing = () => {
   const [error, setError] = useState<Error | null>(null);
@@ -15,16 +15,16 @@ const Landing = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(API_LOCATION)
-      .then((res) => res.json() as Promise<SuperBlock[]>)
+      .then(res => res.json() as Promise<SuperBlock[]>)
       .then(
-        (superblocks) => {
+        superblocks => {
           setLoading(false);
           setItems(superblocks);
         },
         (error: Error) => {
           setLoading(false);
           setError(error);
-        },
+        }
       );
   };
 
@@ -38,7 +38,7 @@ const Landing = () => {
     <div>
       <h1>Superblocks</h1>
       <ul>
-        {items.map((superblock) => (
+        {items.map(superblock => (
           <li key={superblock.name}>
             <Link to={`/${superblock.path}`}>{superblock.name}</Link>
           </li>
