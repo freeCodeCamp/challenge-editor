@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { getBlocks } from "../utils/get-blocks";
+import { Request, Response } from 'express';
+import { getBlocks } from '../utils/get-blocks';
 
 export const superblockRoute = async (
   req: Request,
-  res: Response,
+  res: Response
 ): Promise<void> => {
   const sup = req.params.superblock;
 

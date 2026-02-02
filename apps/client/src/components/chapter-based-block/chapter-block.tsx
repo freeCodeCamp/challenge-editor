@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import {
   ChallengeData,
-  ChallengeDataWithBlock,
-} from "../../../interfaces/challenge-data";
-import { API_LOCATION } from "../../utils/handle-request";
-import "./chapter-block.css";
+  ChallengeDataWithBlock
+} from '../../../interfaces/challenge-data';
+import { API_LOCATION } from '../../utils/handle-request';
+import './chapter-block.css';
 
 const stepBasedSuperblocks = [
-  "scientific-computing-with-python",
-  "responsive-web-design-22",
-  "javascript-algorithms-and-data-structures-22",
-  "front-end-development",
+  'scientific-computing-with-python',
+  'responsive-web-design-22',
+  'javascript-algorithms-and-data-structures-22',
+  'front-end-development'
 ];
 
 const taskBasedSuperblocks = [
-  "a2-english-for-developers",
-  "b1-english-for-developers",
-  "a2-professional-spanish",
-  "a2-professional-chinese",
-  "a1-professional-chinese",
+  'a2-english-for-developers',
+  'b1-english-for-developers',
+  'a2-professional-spanish',
+  'a2-professional-chinese',
+  'a1-professional-chinese'
 ];
 
 const ChapterBasedBlock = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
-  const [blockName, setBlockName] = useState("");
-  const [superBlockName, setSuperBlockName] = useState("");
+  const [blockName, setBlockName] = useState('');
+  const [superBlockName, setSuperBlockName] = useState('');
   const [items, setItems] = useState([] as ChallengeData[]);
   const params = useParams() as {
     superblock: string;
@@ -43,9 +43,9 @@ const ChapterBasedBlock = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(`${API_LOCATION}/${params.superblock}/${params.block}`)
-      .then((res) => res.json() as Promise<ChallengeDataWithBlock>)
+      .then(res => res.json() as Promise<ChallengeDataWithBlock>)
       .then(
-        (superblocks) => {
+        superblocks => {
           setLoading(false);
           setItems(superblocks.steps);
           setBlockName(superblocks.currentBlock);
@@ -54,7 +54,7 @@ const ChapterBasedBlock = () => {
         (error: Error) => {
           setLoading(false);
           setError(error);
-        },
+        }
       );
   };
 
@@ -66,18 +66,18 @@ const ChapterBasedBlock = () => {
   }
 
   const isStepBasedSuperblock = stepBasedSuperblocks.includes(
-    params.superblock,
+    params.superblock
   );
 
   const isTaskBasedSuperblock = taskBasedSuperblocks.includes(
-    params.superblock,
+    params.superblock
   );
 
   return (
     <div>
       <h1>{blockName}</h1>
-      <span className="breadcrumb">{superBlockName}</span>
-      <ul className="step-grid">
+      <span className='breadcrumb'>{superBlockName}</span>
+      <ul className='step-grid'>
         {items.map((challenge, i) => (
           <li key={challenge.name}>
             {!isStepBasedSuperblock && <span>{`${i + 1}: `}</span>}
@@ -96,7 +96,7 @@ const ChapterBasedBlock = () => {
       <h2>Project Controls</h2>
       {isStepBasedSuperblock ? (
         <p>
-          Looking to add, remove, or edit steps?{" "}
+          Looking to add, remove, or edit steps?{' '}
           <Link to={`/${params.superblock}/${params.block}/_tools`}>
             Use the step tools.
           </Link>

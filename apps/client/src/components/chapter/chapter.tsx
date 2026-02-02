@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { API_LOCATION } from "../../utils/handle-request";
-import { Module, ChaptersWithLocation } from "../../../interfaces/chapter";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { API_LOCATION } from '../../utils/handle-request';
+import { Module, ChaptersWithLocation } from '../../../interfaces/chapter';
 
 const ChapterLanding = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState([] as Module[]);
-  const [chapterName, setChapterName] = useState("");
-  const [superBlockName, setSuperBlockName] = useState("");
+  const [chapterName, setChapterName] = useState('');
+  const [superBlockName, setSuperBlockName] = useState('');
   const params = useParams() as { superblock: string; chapter: string };
 
   useEffect(() => {
@@ -19,9 +19,9 @@ const ChapterLanding = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(`${API_LOCATION}/${params.superblock}/chapters/${params.chapter}`)
-      .then((res) => res.json() as Promise<ChaptersWithLocation>)
+      .then(res => res.json() as Promise<ChaptersWithLocation>)
       .then(
-        (blockData) => {
+        blockData => {
           setLoading(false);
           setItems(blockData.modules);
           setChapterName(blockData.currentChapter);
@@ -30,7 +30,7 @@ const ChapterLanding = () => {
         (error: Error) => {
           setLoading(false);
           setError(error);
-        },
+        }
       );
   };
 
@@ -44,7 +44,7 @@ const ChapterLanding = () => {
     <div>
       <h1>{chapterName}</h1>
       <ul>
-        {items.map((chapter) => (
+        {items.map(chapter => (
           <li key={chapter.name}>
             <Link
               to={`/${params.superblock}/chapters/${params.chapter}/${chapter.path}`}
@@ -60,7 +60,7 @@ const ChapterLanding = () => {
       <hr />
       <h2>Create New Project</h2>
       <p>
-        Want to create a new project? Open your terminal and run{" "}
+        Want to create a new project? Open your terminal and run{' '}
         <code>pnpm run create-new-project</code>
       </p>
     </div>

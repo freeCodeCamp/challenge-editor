@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { BlockRequiredProps } from "../../../interfaces/prop-types";
-import { API_LOCATION, handleRequest } from "../../utils/handle-request";
+import React, { useState } from 'react';
+import { BlockRequiredProps } from '../../../interfaces/prop-types';
+import { API_LOCATION, handleRequest } from '../../utils/handle-request';
 
 const DeleteStep = ({ superblock, block }: BlockRequiredProps) => {
   const [num, setNum] = useState(0);
 
   const click = handleRequest(() =>
     fetch(
-      `${API_LOCATION}/${superblock || ""}/${block || ""}/_tools/delete-step`,
+      `${API_LOCATION}/${superblock || ''}/${block || ''}/_tools/delete-step`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ num }),
-      },
-    ),
+        body: JSON.stringify({ num })
+      }
+    )
   );
 
   const changeNum = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,9 +24,9 @@ const DeleteStep = ({ superblock, block }: BlockRequiredProps) => {
 
   return (
     <div>
-      <label htmlFor="num">
+      <label htmlFor='num'>
         Step to delete:
-        <input id="num" type="number" onChange={changeNum} />
+        <input id='num' type='number' onChange={changeNum} />
       </label>
       <button onClick={click}>Delete Step</button>
     </div>
