@@ -3,13 +3,13 @@
   --background: #1b1b32;
   --content: #f5f6f7;
   --grey: #3b3b4f;
-  --font-family-sans-serif: "Lato", sans-serif;
-  --font-family-monospace: "Hack-ZeroSlash", monospace;
+  --font-family-sans-serif: 'Lato', sans-serif;
+  --font-family-monospace: 'Hack-ZeroSlash', monospace;
 }
 
 @font-face {
-  font-family: "Lato";
-  src: url("./fonts/Lato-Regular.woff");
+  font-family: 'Lato';
+  src: url('./fonts/Lato-Regular.woff');
 }
 
 body {
