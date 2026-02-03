@@ -24,7 +24,6 @@ type BlockLocation = {
 
 // This will need manual updates as new chapter-based super blocks are added
 const chapterBasedSuperBlocks = [
-  'full-stack-developer',
   'full-stack-open',
   'a1-professional-spanish',
   'responsive-web-design-v9',
@@ -39,6 +38,7 @@ const chapterBasedSuperBlocks = [
 
 export const getBlocks = async (sup: string): Promise<BlockLocation> => {
   const superBlockDataPath = join(SUPERBLOCK_META_DIR, sup + '.json');
+
   const superBlockMetaFile = await readFile(superBlockDataPath, {
     encoding: 'utf8'
   });

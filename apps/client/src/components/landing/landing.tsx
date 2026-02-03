@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SuperBlock } from '../../../interfaces/super-block';
+import { type SuperBlockStage } from '../../../interfaces/super-block';
 import { API_LOCATION } from '../../utils/handle-request';
 
 const Landing = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
-  const [items, setItems] = useState([] as SuperBlock[]);
+  const [stages, setStages] = useState([] as SuperBlockStage[]);
 
   useEffect(() => {
     fetchData();
@@ -15,11 +15,11 @@ const Landing = () => {
   const fetchData = () => {
     setLoading(true);
     fetch(API_LOCATION)
-      .then(res => res.json() as Promise<SuperBlock[]>)
+      .then(res => res.json() as Promise<SuperBlockStage[]>)
       .then(
-        superblocks => {
+        superBlockStages => {
           setLoading(false);
-          setItems(superblocks);
+          setStages(superBlockStages);
         },
         (error: Error) => {
           setLoading(false);
@@ -37,13 +37,18 @@ const Landing = () => {
   return (
     <div>
       <h1>Superblocks</h1>
-      <ul>
-        {items.map(superblock => (
-          <li key={superblock.name}>
-            <Link to={`/${superblock.path}`}>{superblock.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {stages.map(stage => (
+        <div key={stage.stageName}>
+          <h2>{stage.stageName}</h2>
+          <ul>
+            {stage.superBlocks.map(superblock => (
+              <li key={superblock.name}>
+                <Link to={`/${superblock.path}`}>{superblock.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };
