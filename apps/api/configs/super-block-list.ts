@@ -103,12 +103,11 @@ export const superBlockStages = [
   },
   {
     stageName: 'Daily Challenges',
-    superBlocks: [
-      { name: 'Daily Coding Challenge', path: 'dev-playground' }
-    ]
+    superBlocks: [{ name: 'Daily Coding Challenge', path: 'dev-playground' }]
   },
   {
-    stageName: 'Catalog', superBlocks: [
+    stageName: 'Catalog',
+    superBlocks: [
       { name: 'Basic HTML', path: 'basic-html' },
       { name: 'Semantic HTML', path: 'semantic-html' }
     ]
