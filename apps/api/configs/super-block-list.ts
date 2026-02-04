@@ -47,6 +47,10 @@ export const superBlockStages = [
       {
         name: 'A1 Professional Spanish',
         path: 'a1-professional-spanish'
+      },
+      {
+        name: 'A2 Professional Spanish',
+        path: 'a2-professional-spanish'
       }
     ]
   },
@@ -56,6 +60,10 @@ export const superBlockStages = [
       {
         name: 'A1 Professional Chinese',
         path: 'a1-professional-chinese'
+      },
+      {
+        name: 'A2 Professional Chinese',
+        path: 'a2-professional-chinese'
       }
     ]
   },
@@ -86,7 +94,23 @@ export const superBlockStages = [
       {
         name: 'Rosetta Code',
         path: 'rosetta-code'
+      },
+      {
+        name: 'Full Stack Open',
+        path: 'full-stack-open'
       }
+    ]
+  },
+  {
+    stageName: 'Daily Challenges',
+    superBlocks: [
+      { name: 'Daily Coding Challenge', path: 'dev-playground' }
+    ]
+  },
+  {
+    stageName: 'Catalog', superBlocks: [
+      { name: 'Basic HTML', path: 'basic-html' },
+      { name: 'Semantic HTML', path: 'semantic-html' }
     ]
   }
 ];
