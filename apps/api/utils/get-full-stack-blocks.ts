@@ -1,12 +1,7 @@
 import { readFile } from 'fs/promises';
 import { join } from 'path';
-import {
-  SUPERBLOCK_META_DIR,
-  BLOCK_META_DIR,
-  ENGLISH_LANG_DIR
-} from '../configs/paths';
+import { SUPERBLOCK_META_DIR, ENGLISH_LANG_DIR } from '../configs/paths';
 import { SuperBlockMeta } from '../interfaces/superblock-meta';
-import { PartialMeta } from '../interfaces/partial-meta';
 import { Intro } from '../interfaces/intro';
 
 type Block = {
@@ -91,40 +86,32 @@ export const getBlocks = async (
   });
   const introData = JSON.parse(introFile) as Intro;
 
-  const modules = Object.entries(introData[superBlock]['modules']!);
+  const modules = Object.entries(introData[superBlock].modules ?? {});
+  const moduleTrueName =
+    modules.find(x => x[0] === moduleName)?.[1] ?? moduleName;
 
-  const moduleTrueName = modules.filter(x => x[0] === moduleName)[0][1];
+  const chapters = Object.entries(introData[superBlock].chapters ?? {});
+  const chapterTrueName =
+    chapters.find(x => x[0] === chapterName)?.[1] ?? chapterName;
 
-  const chapters = Object.entries(introData[superBlock]['chapters']!);
-
-  const chapterTrueName = chapters.filter(x => x[0] === chapterName)[0][1];
-
-  const foundChapter = superBlockMeta.chapters?.filter(
+  const foundChapter = superBlockMeta.chapters?.find(
     chapter => chapter.dashedName === chapterName
-  )[0];
-
-  const foundModule = foundChapter?.modules.filter(
-    module => module.dashedName === moduleName
-  )[0];
-
-  let blocks: { name: string; path: string }[] = [];
-
-  blocks = await Promise.all(
-    foundModule!.blocks!.map(async block => {
-      const blockStructurePath = join(BLOCK_META_DIR, block + '.json');
-      const blockMetaFile = await readFile(blockStructurePath, {
-        encoding: 'utf8'
-      });
-      const blockMeta = JSON.parse(blockMetaFile) as PartialMeta;
-      return {
-        name: blockMeta.name,
-        path: block
-      };
-    })
   );
 
+  const foundModule = foundChapter?.modules.find(
+    module => module.dashedName === moduleName
+  );
+
+  const blocksMeta = introData[superBlock].blocks ?? {};
+
+  const blocks =
+    foundModule?.blocks?.map(block => ({
+      name: blocksMeta[block]?.title ?? block,
+      path: block
+    })) ?? [];
+
   return {
-    blocks: blocks,
+    blocks,
     currentModule: moduleTrueName,
     currentChapter: chapterTrueName
   };
