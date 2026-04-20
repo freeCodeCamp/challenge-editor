@@ -1,9 +1,9 @@
 interface SuperBlock {
   title: string;
   intro: string[];
-  blocks: string[];
-  modules?: string[];
-  chapters?: string[];
+  blocks?: Record<string, { title: string }>;
+  modules?: Record<string, string>;
+  chapters?: Record<string, string>;
 }
 
 export interface Intro {
