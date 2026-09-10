@@ -12,7 +12,11 @@ export const handleRequest = (makeRequest: () => Promise<Response>) => () => {
       if (data.message) {
         alert(data.message);
       } else {
-        alert(JSON.stringify(data));
+        alert(
+          [data.stdout?.trim(), data.stderr?.trim()]
+            .filter(Boolean)
+            .join('\n') || 'Command completed.'
+        );
       }
     })
     .catch(err => console.error(err));
