@@ -4,6 +4,7 @@ import { promisify } from 'util';
 
 import { Request, Response } from 'express';
 import { ToolsSwitch } from '../interfaces/tools';
+import { CHALLENGE_DIR } from '../configs/paths';
 
 const asyncExec = promisify(exec);
 
@@ -29,20 +30,9 @@ export const toolsRoute = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { superblock, block, command } = req.params;
+  const { block, command } = req.params;
   const { num } = req.body as Record<string, number>;
-  const directory = join(
-    __dirname,
-    '..',
-    '..',
-    '..',
-    '..',
-    'curriculum',
-    'challenges',
-    'english',
-    superblock,
-    block
-  );
+  const directory = join(CHALLENGE_DIR, block);
 
   if (!(command in toolsSwitch)) {
     res.json({ stdout: '', stderr: 'Command not found' });
