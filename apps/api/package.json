@@ -7,7 +7,8 @@
     "dev": "tsx server.ts",
     "postinstall": "shx cp ./sample.env ./.env",
     "lint": "eslint --max-warnings 0",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "tsx --test routes/*.test.ts"
   },
   "author": "freeCodeCamp",
   "license": "BSD-3-Clause",
