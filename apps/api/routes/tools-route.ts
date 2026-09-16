@@ -1,48 +1,34 @@
-import { exec } from 'child_process';
-import { join } from 'path';
-import { promisify } from 'util';
-
 import { Request, Response } from 'express';
-import { ToolsSwitch } from '../interfaces/tools';
 import { CHALLENGE_DIR } from '../configs/paths';
-
-const asyncExec = promisify(exec);
-
-const toolsSwitch: ToolsSwitch = {
-  'create-next-step': directory => {
-    return asyncExec(`cd ${directory} && pnpm --silent run create-next-step`);
-  },
-  'create-empty-steps': (directory, num) => {
-    return asyncExec(
-      `cd ${directory} && pnpm --silent run create-empty-steps ${num}`
-    );
-  },
-  'insert-step': (directory, num) => {
-    return asyncExec(`cd ${directory} && pnpm --silent run insert-step ${num}`);
-  },
-  'delete-step': (directory, num) => {
-    return asyncExec(`cd ${directory} && pnpm --silent run delete-step ${num}`);
-  },
-  'update-step-titles': directory => {
-    return asyncExec(`cd ${directory} && pnpm --silent run update-step-titles`);
-  }
-};
+import {
+  resolveBlockDirectory,
+  validateToolInput
+} from '../utils/validate-tool-input';
+import { runTool } from '../utils/run-tool';
 
 export const toolsRoute = async (
-  req: Request,
+  req: Request<{ block: string; command: string }>,
   res: Response
 ): Promise<void> => {
-  const { block, command } = req.params;
-  const { num } = req.body as Record<string, number>;
-  const directory = join(CHALLENGE_DIR, block);
-
-  if (!(command in toolsSwitch)) {
-    res.json({ stdout: '', stderr: 'Command not found' });
+  let input: ReturnType<typeof validateToolInput>;
+  let directory: string;
+  try {
+    const { num } = (req.body ?? {}) as { num?: unknown };
+    input = validateToolInput(req.params.block, req.params.command, num);
+    directory = await resolveBlockDirectory(CHALLENGE_DIR, input.block);
+  } catch (error) {
+    res.status(400).json({ stdout: '', stderr: (error as Error).message });
     return;
   }
 
-  const parsed = command as keyof ToolsSwitch;
-
-  const { stdout, stderr } = await toolsSwitch[parsed](directory, num);
-  res.json({ stdout, stderr });
+  try {
+    const { stdout, stderr } = await runTool(directory, input);
+    res.json({ stdout, stderr });
+  } catch (error) {
+    const failure = error as Error & { stdout?: string; stderr?: string };
+    res.status(500).json({
+      stdout: failure.stdout ?? '',
+      stderr: failure.stderr || failure.message
+    });
+  }
 };
