@@ -7,7 +7,8 @@
     "lint": "prettier --check . && turbo lint",
     "type-check": "turbo type-check",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "turbo test"
   },
   "keywords": [],
   "author": "freeCodeCamp <team@freecodecamp.org>",
