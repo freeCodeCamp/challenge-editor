@@ -29,6 +29,19 @@ export const superBlockStages = [
     ]
   },
   {
+    stageName: 'Upcoming Curriculum',
+    superBlocks: [
+      {
+        name: 'Python Programming Fundamentals',
+        path: 'python-programming-fundamentals'
+      },
+      {
+        name: 'Algorithms and Data Structure',
+        path: 'algorithms-and-data-structure'
+      }
+    ]
+  },
+  {
     stageName: 'English for Developers',
     superBlocks: [
       {
